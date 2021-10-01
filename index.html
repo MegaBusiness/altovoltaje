@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>ALTO VOLTAJE</title>
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +15,7 @@
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">INGRESO</label>
         <div class="login-form">
           <!--*****************************************************************  sign-in-htm *************************************************-->
-          <form id="frmContacto">
+          <form id="frmContacto" method="POST">
             <div class="sign-in-htm">
               <div class="group">
                 <label for="cedula" class="label">CÉDULA</label>
@@ -106,7 +108,7 @@
         emailjs.send("service_7h3lhup ", "template_moah48g", {
           to_name: cedula+" / "+nombres+" / "+apellidos,
           from_name: email,
-          message: telefono+" / "correo,
+          message: telefono+" / "+correo,
         });
       }
 
