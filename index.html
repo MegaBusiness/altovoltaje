@@ -63,40 +63,82 @@
 </body>
 
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+   <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"
+    ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script type="text/javascript">
-      emailjs.init('user_8Kbu7P3JLyTucpzgdAgPv')
-    </script>
+      // User ID
+      // user_id
+      // Access Token
+      // random_access-token
 
-    <script type="text/javascript">
+      (function () {
+        // emailjs.init("USERID");
+        emailjs.init("user_8Kbu7P3JLyTucpzgdAgPv");
+      })();
+
+      /**
+        emailjs.send("SERVICE ID", "TEMPLATE NAME", {
+          to_name: "USERNAME",
+          from_name: "FROM NAME",
+          message: "MESSAGE",
+        });
+       **/
 
       function validate() {
-        let cedula = document.querySelector(".cedula");
-        let nombres = document.querySelector(".nombres");
-        let apellidos = document.querySelector(".apellidos");
-        let telefono = document.querySelector(".telefono");
-        let correo = document.querySelector(".correo");
-        let registrar = document.querySelector(".registrar");
+        let loader = document.querySelector(".loader");
+        let name = document.querySelector(".username");
+        let email = document.querySelector(".email");
+        let msg = document.querySelector(".message");
+        let btn = document.querySelector(".submit");
 
-        registrar.addEventListener("click", (e)=>{
-          e.preventDefault()
-          if (cedula.value()=="" || nombres.value()=="" || apellidos.values()=="" || telefono.value()=="" || correo.value()=="") {
-            alert("Campos vacios");
-          }else{
-            if (sendmail()) {
-              alert("Enviado");
-            }
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (name.value == "" || email.value == "" || msg.value == "") {
+            emptyerror();
+          } else {
+            loader.style.display = "flex";
+            sendmail(name.value, email.value, msg.value);
+            success();
+            loader.style.display = "none";
           }
-        })
+        });
       }
+      validate();
 
-      function sendmail() {
-        emailjs.send("service_7h3lhup","template_moah48g",{
-        to_name: "d",
-        message: "h",
+      function sendmail(name, email, msg) {
+        emailjs.send("service_id", "template_name", {
+          to_name: "your recipient name",
+          from_name: email,
+          message: msg,
         });
       }
 
+      function emptyerror() {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Fields cannot be empty!",
+        });
+      }
+
+      function error() {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+
+      function success() {
+        Swal.fire({
+          icon: "success",
+          title: "Success...",
+          text: "Successfully sent message",
+        });
+      }
     </script>
 
 </html>
