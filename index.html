@@ -13,7 +13,7 @@
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">INGRESO</label>
         <div class="login-form">
           <!--*****************************************************************  sign-in-htm *************************************************-->
-          <form name="frmContacto" method="POST" action="enviarcorreo.php">
+          <form name="frmContacto" method="POST" action="#">
             <div class="sign-in-htm">
               <div class="group">
                 <label for="cedula" class="label">CÉDULA</label>
@@ -61,4 +61,34 @@
     </div><!--Login-Wrap-->
   <!--****************************************************************************************************************************************-->
 </body>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+      emailjs.init('user_8Kbu7P3JLyTucpzgdAgPv')
+    </script>
+
+    <script type="text/javascript">
+      const btn = document.getElementById('registrar');
+
+      document.getElementById('form')
+       .addEventListener('submit', function(event) {
+         event.preventDefault();
+
+         btn.value = 'Sending...';
+
+         const serviceID = 'service_7h3lhup';
+         const templateID = 'template_moah48g';
+
+         emailjs.sendForm(serviceID, templateID, this)
+          .then(() => {
+            btn.value = 'Send Email';
+            alert('Sent!');
+          }, (err) => {
+            btn.value = 'Send Email';
+            alert(JSON.stringify(err));
+          });
+      });
+    </script>
+
 </html>
