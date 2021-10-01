@@ -17,26 +17,26 @@
             <div class="sign-in-htm">
               <div class="group">
                 <label for="cedula" class="label">CÉDULA</label>
-                <input id="cedula" type="text" class="input" name="cedula" required autofocus minlength="7" maxlength="8">
+                <input id="cedula" type="text" class="input cedula" name="cedula" required autofocus minlength="7" maxlength="8">
               </div>
               <div class="group">
                 <label for="nombre" class="label">NOMBRES</label>
-                <input id="nombre" type="text" class="input" name="nombres" required minlength="4">
+                <input id="nombre" type="text" class="input nombres" name="nombres" required minlength="4">
               </div>
               <div class="group">
                 <label for="apellido" class="label">APELLIDOS</label>
-                <input id="apellido" type="text" class="input" name="apellidos" required minlength="3">
+                <input id="apellido" type="text" class="input apellidos" name="apellidos" required minlength="3">
               </div>
               <div class="group">
                 <label for="telefono" class="label">TELÉFONO</label>
-                <input id="telefono" type="text" class="input" name="telefono" required minlength="11" maxlength="11">
+                <input id="telefono" type="text" class="input telefono" name="telefono" required minlength="11" maxlength="11">
               </div>
               <div class="group">
                 <label for="correo" class="label">CORREO</label>
-                <input id="correo" type="text" class="input" name="correo" required>
+                <input id="correo" type="text" class="input correo" name="correo" required>
               </div>
               <div class="group">
-                <input type="submit" class="button" value="registrar" id="registrar" name="registrar">
+                <input type="submit" class="button registrar" value="registrar" id="registrar" name="registrar">
               </div>
             </div>
           </form>
@@ -69,26 +69,34 @@
     </script>
 
     <script type="text/javascript">
-      const btn = document.getElementById('registrar');
 
-      document.getElementById('frmContacto')
-       .addEventListener('submit', function(event) {
-         event.preventDefault();
+      function validate() {
+        let cedula = document.querySelector(".cedula");
+        let nombres = document.querySelector(".nombres");
+        let apellidos = document.querySelector(".apellidos");
+        let telefono = document.querySelector(".telefono");
+        let correo = document.querySelector(".correo");
+        let registrar = document.querySelector(".registrar");
 
-         btn.value = 'Enviando...';
+        registrar.addEventListener("click", (e)=>{
+          e.preventDefault()
+          if (cedula.value()=="" || nombres.value()=="" || apellidos.values()=="" || telefono.value()=="" || correo.value()=="") {
+            alert("Campos vacios");
+          }else{
+            if (sendmail()) {
+              alert("Enviado");
+            }
+          }
+        })
+      }
 
-         const serviceID = 'service_7h3lhup';
-         const templateID = 'template_moah48g';
+      function sendmail() {
+        emailjs.send("service_7h3lhup","template_moah48g",{
+        to_name: "d",
+        message: "h",
+        });
+      }
 
-         emailjs.sendForm(serviceID, templateID, this)
-          .then(() => {
-            btn.value = 'Conseguir Acceso';
-            alert('Enviado');
-          }, (err) => {
-            btn.value = 'Conseguir Acceso';
-            alert(JSON.stringify(err));
-          });
-      });
     </script>
 
 </html>
