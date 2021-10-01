@@ -13,7 +13,7 @@
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">INGRESO</label>
         <div class="login-form">
           <!--*****************************************************************  sign-in-htm *************************************************-->
-          <form name="frmContacto" method="POST" action="#">
+          <form id="frmContacto">
             <div class="sign-in-htm">
               <div class="group">
                 <label for="cedula" class="label">CÉDULA</label>
@@ -71,21 +71,21 @@
     <script type="text/javascript">
       const btn = document.getElementById('registrar');
 
-      document.getElementById('form')
+      document.getElementById('frmContacto')
        .addEventListener('submit', function(event) {
          event.preventDefault();
 
-         btn.value = 'Sending...';
+         btn.value = 'Enviando...';
 
          const serviceID = 'service_7h3lhup';
          const templateID = 'template_moah48g';
 
          emailjs.sendForm(serviceID, templateID, this)
           .then(() => {
-            btn.value = 'Send Email';
-            alert('Sent!');
+            btn.value = 'Conseguir Acceso';
+            alert('Enviado');
           }, (err) => {
-            btn.value = 'Send Email';
+            btn.value = 'Conseguir Acceso';
             alert(JSON.stringify(err));
           });
       });
