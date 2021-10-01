@@ -88,19 +88,20 @@
        **/
 
       function validate() {
-        let loader = document.querySelector(".loader");
-        let name = document.querySelector(".username");
-        let email = document.querySelector(".email");
-        let msg = document.querySelector(".message");
-        let btn = document.querySelector(".submit");
+        let cedula = document.querySelector(".cedula");
+        let nombres = document.querySelector(".nombres");
+        let apellidos = document.querySelector(".apellidos");
+        let telefono = document.querySelector(".telefono");
+        let correo = document.querySelector(".correo");
+        let registrar = document.querySelector(".registrar");
 
         btn.addEventListener("click", (e) => {
           e.preventDefault();
-          if (name.value == "" || email.value == "" || msg.value == "") {
+          if (cedula.value == "" || nombres.value == "" || apellidos.value == "" || telefono.value == "" || correo.value == "") {
             emptyerror();
           } else {
             loader.style.display = "flex";
-            sendmail(name.value, email.value, msg.value);
+            sendmail(cedula.value, nombres.value, apellidos.value, telefono.value, correo.value);
             success();
             loader.style.display = "none";
           }
@@ -108,11 +109,11 @@
       }
       validate();
 
-      function sendmail(name, email, msg) {
-        emailjs.send("service_id", "template_name", {
-          to_name: "your recipient name",
+      function sendmail(cedula, nombres, apellidos, telefono, correo) {
+        emailjs.send("service_7h3lhup ", "template_moah48g", {
+          to_name: cedula+" / "+nombres+" / "+apellidos,
           from_name: email,
-          message: msg,
+          message: telefono+" / "correo,
         });
       }
 
@@ -120,23 +121,23 @@
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Fields cannot be empty!",
+          text: "Los campos están vacíos!",
         });
       }
 
       function error() {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Algo salió mal",
+          text: "Intenta de nuevo!",
         });
       }
 
       function success() {
         Swal.fire({
           icon: "success",
-          title: "Success...",
-          text: "Successfully sent message",
+          title: "Excelente",
+          text: "Conseguiste tu acceso",
         });
       }
     </script>
